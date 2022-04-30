@@ -1,13 +1,13 @@
 {
   "name": "@projectfunction/thor-runner",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "Thor test kit based on Legacy Rejig Testing Service",
   "main": "index.js",
   "repository": "https://github.com/projectfunction/Thor-TS.git",
   "author": "Daryl <darylcecile@gmail.com>",
   "license": "GPL-2.0",
   "scripts": {
-    "build": "esbuild index.ts --bundle --platform=node --outfile=index.js --format=esm --external:./node_modules/*"
+    "build": "esbuild index.ts --bundle --platform=node --outfile=index.js --format=esm"
   },
   "type": "module",
   "devDependencies": {
@@ -15,6 +15,8 @@
     "esbuild": "^0.14.38"
   },
   "dependencies": {
+    "isomorphic-git": "^1.17.1",
+    "nanoid": "^3.3.3",
     "typescript": "^4.6.4"
   }
 }
