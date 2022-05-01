@@ -81,6 +81,10 @@ export default class ThorRunner {
 			});
 		});
 
+		child.on('error', (err) => {
+			options.onOutput?.(`[ERROR] ${err}`, true);
+		})
+
 		return {
 			kill: (code?:number) => child.kill(code),
 			path: dirName,
