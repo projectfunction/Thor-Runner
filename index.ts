@@ -73,10 +73,13 @@ export default class ThorRunner {
 		});
 
 		child.on('close', (code) => {
+			options.onOutput?.(`Exited with code ${code ?? 0}`);
+		});
+
+		child.on('exit', code => {
 			isRunning = false;
 			options.onOutput?.(`Cleaning up instance ${instanceId}...`);
-			fs.rm(dirName, { recursive: true }).finally(()=>{
-				options.onOutput?.(`Done.`);
+			fs.rm(dirName, { recursive: true }).finally(()=> {
 				options.onExit?.(code ?? 0);
 			});
 		});
