@@ -1,6 +1,6 @@
 {
   "name": "@projectfunction/thor-runner",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Thor test kit based on Legacy Rejig Testing Service",
   "main": "index.js",
   "repository": "https://github.com/projectfunction/Thor-TS.git",

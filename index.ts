@@ -52,7 +52,24 @@ export default class ThorRunner {
 		await ThorRunner.exec(`git clone ${options.repoUrl}`, dirName).catch(e => console.error(e));
 		options.onOutput?.('Cloned!');
 
-		let permissions = [...options.permissions, `--allow-read=${dirName}`, '--allow-env=THOR_CWD'];
+		let permissionDict = [
+			...options.permissions, 
+			`--allow-read=${dirName}`, 
+			'--allow-env=THOR_CWD'
+		].reduce((prev, current, index, arr) => {
+			let obj = {...prev};
+			let [key, val] = current.split('=');
+			if (!Array.isArray(obj[key])) obj[key] = [];
+			if (val !== undefined) obj[key].push(val);
+			return obj;
+		}, {});
+
+		let permissions = Object.entries<string[]>(permissionDict).map(([k, v])=>{
+			if (v.length > 0){
+				return `${k}=${v.join(',')}`
+			}
+			return k;
+		});
 
 		options.onOutput?.(`Starting instance ${instanceId}...`);
 
